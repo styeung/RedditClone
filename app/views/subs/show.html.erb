@@ -1,0 +1,10 @@
+<h1><%= @sub.title %></h1>
+<p>Moderated by: <%= @sub.moderator.username %></p>
+<p><%= @sub.description %></p>
+
+<% @sub.posts.each do |post| %>
+  <hr>
+  <a href="<%= post_url(post) %>"><%= post.title %></a>
+  <p>Posted by: <%= post.author.username %></p>
+  <p>Created <%= time_ago_in_words(post.created_at) %> ago</p>
+<% end %>

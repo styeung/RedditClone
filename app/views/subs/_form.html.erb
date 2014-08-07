@@ -1,0 +1,26 @@
+<% path = action == "edit" ? sub_url(sub) : subs_url %>
+<% button_name = action == "edit" ? "Edit Sub" : "Create New Sub" %>
+
+<form action="<%= path %>" method="POST">
+  <%= auth_token %>
+  <% if action == "edit" %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+  <label>
+    Title
+    <input type="text" name="sub[title]" value="<%= sub.title %>">
+  </label>
+  <br>
+  <label>
+    Description
+    <textarea name="sub[description]">
+      <%= sub.description %>
+    </textarea>
+  </label>
+  <br>
+  <button><%= button_name %></button>
+</form>
+
+<% content_for :in_out_prompt do%>
+  <%= standard_in_out_prompt %>
+<% end %>

@@ -1,0 +1,12 @@
+<h1>Subs</h1>
+<ul>
+<% @subs.each do |sub| %>
+  <li>
+    <a href="<%= sub_url(sub) %>"><%= sub.title %></a>
+  </li>
+<% end %>
+</ul>
+
+<% content_for :in_out_prompt do%>
+  <%= standard_in_out_prompt %>
+<% end %>

@@ -1,0 +1,8 @@
+<h1><%= @post.title %></h1>
+<% if @post.author == current_user %>
+  <%= button_to "Edit Post", edit_post_url(@post), method: :get %>
+<% end %>
+
+<p>by: <%= @post.author.username %></p>
+<a href="<%= @post.url %>"><%= @post.url %></a>
+<p><%= @post.content %></p>

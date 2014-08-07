@@ -1,0 +1,19 @@
+<h1>Sign In</h1>
+
+<form action="<%= session_url %>" method="POST">
+  <%= auth_token %>
+  <label>
+    Username
+    <input type="text" name="user[username]" value="<%= @user.username %>">
+  </label>
+  <label>
+    Password
+    <input type="password" name="user[password]">
+  </label>
+  <button>Sign In</button>
+</form>
+
+<% content_for :in_out_prompt do %>
+  No account?
+  <%= button_to "Sign Up", new_user_url, method: :get %>
+<% end %>

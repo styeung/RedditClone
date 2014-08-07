@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RedditClone</title>
+
+</head>
+<body>
+  <%= flash[:notice] if flash[:notice] %>
+  <% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |err|%>
+    <li><%= err %></li>
+    <% end %>
+  </ul>
+  <% end %>
+<hr>
+
+<%= yield %>
+
+<hr>
+
+<%= yield :in_out_prompt %>
+
+</body>
+</html>
