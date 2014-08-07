@@ -21,4 +21,23 @@ module ApplicationHelper
       HTML
     end
   end
+
+  def vote_buttons(voteable)
+    if voteable.has_voted?(current_user)
+      button_to("Rescind Vote", vote_url(voteable.get_vote(current_user)), method: :delete)
+    else
+      path = voteable.class == Post ? post_votes_url(voteable.id) : comment_votes_url(voteable.id)
+
+      <<-HTML.html_safe
+        <form action="#{path}" method="POST">
+          <input type="hidden" name="value" value="1">
+          <button>Upvote</button>
+        </form>
+        <form action="#{path}" method="POST">
+          <input type="hidden" name="value" value="-1">
+          <button>Downvote</button>
+        </form>
+      HTML
+    end
+  end
 end

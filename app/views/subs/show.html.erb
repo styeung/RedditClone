@@ -8,3 +8,7 @@
   <p>Posted by: <%= post.author.username %></p>
   <p>Created <%= time_ago_in_words(post.created_at) %> ago</p>
 <% end %>
+
+<%= button_to "New Post", new_post_url, method: :get %>
+<%= button_to "Back to All Subs", subs_url, method: :get %>
+

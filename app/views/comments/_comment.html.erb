@@ -1,0 +1,21 @@
+<h5>Comment by: <%= comment.author.username %>,
+  <%= time_ago_in_words(comment.created_at) %> ago</h5>
+<p><%= comment.content %></p>
+
+<%= vote_buttons(comment) unless comment.author == current_user %>
+
+<%= button_to("Delete Comment",
+              comment_url(comment.id),
+              method: :delete) if current_user == comment.author %>
+
+<%= button_to("Add New Comment",
+              new_comment_comment_url(comment.id),
+              method: :get) %>
+
+<% if all_comments[comment.id] %>
+  <ul>
+    <% all_comments[comment.id].sort_by(&:created_at).each do |subcomment| %>
+      <li><%= render subcomment, all_comments: all_comments %></li>
+    <% end %>
+  </ul>
+<% end %>

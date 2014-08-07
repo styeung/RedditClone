@@ -1,8 +1,30 @@
 <h1><%= @post.title %></h1>
 <% if @post.author == current_user %>
-  <%= button_to "Edit Post", edit_post_url(@post), method: :get %>
+  <%= button_to("Edit Post",
+                edit_post_url(@post),
+                method: :get) %>
 <% end %>
 
 <p>by: <%= @post.author.username %></p>
 <a href="<%= @post.url %>"><%= @post.url %></a>
 <p><%= @post.content %></p>
+
+<%= vote_buttons(@post) unless @post.author == current_user %>
+
+<%= button_to("Add New Comment",
+            new_post_comment_url(@post.id),
+            method: :get) %>
+
+<h3>Comments</h3>
+  <% if @all_comments[nil] %>
+    <ul>
+    <% @all_comments[nil].sort_by(&:created_at).each do |comment| %>
+      <li><%= render comment, all_comments: @all_comments %></li>
+    <% end %>
+    </ul>
+  <% end %>
+
+<h3>Subs</h3>
+<% @post.subs.each do |sub| %>
+  <a href="<%= sub_url(sub) %>"><%= sub.title %></a>
+<% end %>

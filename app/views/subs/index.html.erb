@@ -7,6 +7,8 @@
 <% end %>
 </ul>
 
+<%= button_to "New Sub", new_sub_url, method: :get  %>
+
 <% content_for :in_out_prompt do%>
   <%= standard_in_out_prompt %>
 <% end %>

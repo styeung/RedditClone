@@ -1,0 +1,11 @@
+<h1>New Comment</h1>
+<% path = @parent_type == :comment ? comment_comments_url(@id) : post_comments_url(@id) %>
+
+<form action="<%= path %>" method="POST">
+  <%= auth_token %>
+  <label>
+    Content
+    <textarea name="comment[content]"><%= @comment.content %></textarea>
+  </label>
+  <button>Create Comment</button>
+</form>

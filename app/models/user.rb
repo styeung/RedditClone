@@ -21,6 +21,20 @@ class User < ActiveRecord::Base
     inverse_of: :author
   )
 
+  has_many(
+    :authored_comments,
+    class_name: "Comment",
+    foreign_key: :author_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :votes,
+    class_name: "Vote",
+    foreign_key: :voter_id,
+    primary_key: :id
+  )
+
   def self.find_by_credentials(username, password)
     user = self.find_by_username(username)
     return user if user && user.is_password?(password)
